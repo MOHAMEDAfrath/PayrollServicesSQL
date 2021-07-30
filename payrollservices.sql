@@ -37,8 +37,15 @@ update employee_payroll set EmployeePhoneNumber = '7812453698',EmployeeAddress =
 update employee_payroll set EmployeePhoneNumber = '7214587875',EmployeeAddress = 'Banglore',EmployeeDepartment = 'Sales' where EmployeeName = 'Vijay';
 update employee_payroll set EmployeePhoneNumber = '9814753647',EmployeeAddress = 'Mysore' where EmployeeName = 'Asif';
 update employee_payroll set EmployeePhoneNumber = '7345787969',EmployeeAddress = 'Chennai', EmployeeDepartment = 'Customer Service' where EmployeeName = 'Priya';
-
-
+-----UC-9 Ability to add salary details-----
+sp_rename 'employee_payroll.EmployeeSalary','BasicPay'
+alter table employee_payroll Add Deductions float,TaxablePay float,IncomeTax float,NetPay float
+Update employee_payroll set Deductions = '24000' where EmployeeDepartment = 'HR'
+Update employee_payroll set Deductions = '23000' where EmployeeDepartment = 'Sales'
+Update employee_payroll set Deductions = '20000' where EmployeeDepartment = 'Customer Service'
+Update employee_payroll set NetPay = (BasicPay-Deductions)
+Update employee_payroll set TaxablePay = '1000'
+Update employee_payroll set IncomeTax = '200'
 
 
 
