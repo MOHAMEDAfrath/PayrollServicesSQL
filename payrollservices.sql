@@ -19,6 +19,9 @@ select * from employee_payroll;
 -----UC-5 Retrieve Specific Data-----
 select EmployeeSalary from employee_payroll where EmployeeName = 'Vijay';
 select EmployeeSalary from employee_payroll where StartDate Between Cast('2019-01-01' as Date) and GETDATE();
-
+-----UC-6  Alter the table to add gender column and update the values for each rows-----
+Alter table employee_payroll Add Gender char(1);
+update employee_payroll set Gender = 'M' where EmployeeName ='Vijay' or EmployeeName = 'Ram Kumar' or EmployeeName = 'Asif';
+update employee_payroll set Gender = 'F' where EmployeeName = 'Priya';
 
 
