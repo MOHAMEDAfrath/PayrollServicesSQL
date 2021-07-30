@@ -46,7 +46,8 @@ Update employee_payroll set Deductions = '20000' where EmployeeDepartment = 'Cus
 Update employee_payroll set NetPay = (BasicPay-Deductions)
 Update employee_payroll set TaxablePay = '1000'
 Update employee_payroll set IncomeTax = '200'
-
+-----UC-10 Add Priya to Marketing department -----
+Insert into employee_payroll(EmployeeName,BasicPay,StartDate,Gender,EmployeePhoneNumber,EmployeeDepartment,EmployeeAddress,Deductions,TaxablePay,IncomeTax,NetPay)values('Priya','350500','2021-01-17','F','7345787969','Marketing','Chennai','0','0','0','0');
 
 
 
