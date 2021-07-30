@@ -23,5 +23,19 @@ select EmployeeSalary from employee_payroll where StartDate Between Cast('2019-0
 Alter table employee_payroll Add Gender char(1);
 update employee_payroll set Gender = 'M' where EmployeeName ='Vijay' or EmployeeName = 'Ram Kumar' or EmployeeName = 'Asif';
 update employee_payroll set Gender = 'F' where EmployeeName = 'Priya';
+-----UC-7.1 Use aggregate function Sum of salary-----
+select sum(EmployeeSalary)as TotalSalary,Gender from employee_payroll group by Gender;
+-----UC-7.2 Use aggregate function Min of salary-----
+select min(EmployeeSalary)as MinimumSalary,Gender from employee_payroll group by Gender;
+-----UC-7.3 Use aggregate function Max of salary-----
+select max(EmployeeSalary)as MaximumSalary,Gender from employee_payroll group by Gender;
+-----UC-7.4 Use aggregate function Count based on Gender-----
+select count(EmployeeName)as EmployeeCount,Gender from employee_payroll group by Gender;
+
+
+
+
+
+
 
 
