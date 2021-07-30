@@ -31,6 +31,12 @@ select min(EmployeeSalary)as MinimumSalary,Gender from employee_payroll group by
 select max(EmployeeSalary)as MaximumSalary,Gender from employee_payroll group by Gender;
 -----UC-7.4 Use aggregate function Count based on Gender-----
 select count(EmployeeName)as EmployeeCount,Gender from employee_payroll group by Gender;
+-----UC-8 Ability to add further more columns-----
+alter table employee_payroll Add EmployeePhoneNumber bigint, EmployeeDepartment varchar(255) not null default 'HR',EmployeeAddress varchar(255) default 'chennai'
+update employee_payroll set EmployeePhoneNumber = '7812453698',EmployeeAddress = 'Chennai' where EmployeeName = 'Ram Kumar';
+update employee_payroll set EmployeePhoneNumber = '7214587875',EmployeeAddress = 'Banglore',EmployeeDepartment = 'Sales' where EmployeeName = 'Vijay';
+update employee_payroll set EmployeePhoneNumber = '9814753647',EmployeeAddress = 'Mysore' where EmployeeName = 'Asif';
+update employee_payroll set EmployeePhoneNumber = '7345787969',EmployeeAddress = 'Chennai', EmployeeDepartment = 'Customer Service' where EmployeeName = 'Priya';
 
 
 
