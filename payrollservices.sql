@@ -14,6 +14,7 @@ Insert into employee_payroll
 values('Ram Kumar','650000','2020-10-07'),('Vijay','700000','2019-05-08'),('Priya','350500','2021-01-17');
 
 Insert into employee_payroll(EmployeeName,EmployeeSalary,StartDate)values('Asif','950500','2017-12-12');
-
+-----UC-4 Retrieve all data from the table-----
+select * from employee_payroll;
 
 
