@@ -17,7 +17,7 @@ Insert into employee_payroll(EmployeeName,EmployeeSalary,StartDate)values('Asif'
 -----UC-4 Retrieve all data from the table-----
 select * from employee_payroll;
 -----UC-5 Retrieve Specific Data-----
-select EmployeeSalary from employee_payroll where EmployeeName = 'Vijay';
+select BasicPay from employee_payroll where EmployeeName = 'Vijay';
 select EmployeeSalary from employee_payroll where StartDate Between Cast('2019-01-01' as Date) and GETDATE();
 -----UC-6  Alter the table to add gender column and update the values for each rows-----
 Alter table employee_payroll Add Gender char(1);
@@ -113,4 +113,38 @@ insert into emp_Dept values
 ('3','1'),('1','2'),
 ('4','3'),('3','4'),('2','3')
 select * from emp_Dept
+-----UC-12 perform select queries------
+select company.company_Id ,company.company_name,EmployeeId,EmployeeName,Gender,EmployeePhoneNumber,EmployeeAddress,StartDate,payroll.BasicPay,TaxablePay,IncomeTax,Deductions,NetPay,department_table.DeptName from Employee
+inner join company on company.company_Id = Employee.CompanyId
+inner join payroll on payroll.EmpId = Employee.EmployeeId
+inner join emp_Dept on Employee.EmployeeId = emp_Dept.EmpId
+inner join department_table on department_table.DeptId = emp_Dept.DeptId
+---Salary for particular employee---
+select Employee.EmployeeId,Employee.EmployeeName,payroll.BasicPay from payroll inner join
+Employee on Employee.EmployeeId=payroll.EmpId where Employee.EmployeeName = 'Ram Kumar'
+---Salary between date of joining and current date----
+select Employee.EmployeeId,Employee.EmployeeName,payroll.BasicPay from payroll inner join
+Employee on Employee.EmployeeId = payroll.EmpId where Employee.StartDate between Cast('2019-01-01' as Date) and GETDATE();
+---Sum of salary based on gender---
+select sum(payroll.BasicPay) as TotalSalary,Employee.Gender from Employee
+inner join payroll on Employee.EmployeeId = payroll.EmpId group by Employee.Gender
+select sum(payroll.BasicPay) as TotalSalary,Employee.Gender from Employee
+inner join payroll on Employee.EmployeeId = payroll.EmpId where Employee.Gender = 'F' group by Employee.Gender
+---Average of salary based on gender---
+select avg(payroll.BasicPay) as averagesalary,Employee.Gender from Employee
+inner join payroll on Employee.EmployeeId = payroll.EmpId group by Employee.Gender
+select AVG(payroll.BasicPay) as averagesalary,Employee.Gender from Employee
+inner join payroll on Employee.EmployeeId = payroll.EmpId where Employee.Gender = 'F' group by Employee.Gender
+---Minimum salary based on gender---
+select min(payroll.BasicPay) as minimumsalary,Employee.Gender from Employee
+inner join payroll on Employee.EmployeeId = payroll.EmpId group by Employee.Gender
+select min(payroll.BasicPay) as minimumsalary,Employee.Gender from Employee
+inner join payroll on Employee.EmployeeId = payroll.EmpId where Employee.Gender = 'F' group by Employee.Gender
+---Maximum salary based on gender---
+select max(payroll.BasicPay) as maximumsalary,Employee.Gender from Employee
+inner join payroll on Employee.EmployeeId = payroll.EmpId group by Employee.Gender
+select max(payroll.BasicPay) as maximumsalary,Employee.Gender from Employee
+inner join payroll on Employee.EmployeeId = payroll.EmpId where Employee.Gender = 'F' group by Employee.Gender
+
+
 
